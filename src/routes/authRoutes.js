@@ -69,7 +69,7 @@ router.get("/get-user-details", async (req, res) => {
   res.json({
     success: true,
     message: "User details fetched successfully",
-    data,
+    user: data.user,
   });
 });
 
