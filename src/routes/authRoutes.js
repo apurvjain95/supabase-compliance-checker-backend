@@ -58,4 +58,19 @@ router.post("/logout", (req, res) => {
   res.json({ success: true, message: "Logged out successfully" });
 });
 
+router.get("/get-user-details", async (req, res) => {
+  const { data, error } = await createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_ANON_KEY,
+  ).auth.getUser(req.cookies.auth);
+  if (error) {
+    return res.status(401).json({ message: error.message });
+  }
+  res.json({
+    success: true,
+    message: "User details fetched successfully",
+    data,
+  });
+});
+
 module.exports = router;

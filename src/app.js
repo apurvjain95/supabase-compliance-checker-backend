@@ -4,10 +4,12 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const scanRoutes = require("./routes/scanRoutes");
 const { infoLogger } = require("./logger");
+const cookieParser = require("cookie-parser");
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
 // Routes
 app.use("/api/auth", authRoutes);
